@@ -3178,7 +3178,7 @@ void pump_events(int wait_event_timeout)
 
         case WME_RESIZE:
         {
-            ui_root.resize(event.resize.w, event.resize.h);
+            // triggers ui::resize:
             tiles.resize_event(event.resize.w, event.resize.h);
             break;
         }
