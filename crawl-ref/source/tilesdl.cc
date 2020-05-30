@@ -659,6 +659,12 @@ int TilesFramework::getch_ck()
                 m_region_msg->alt_text().clear();
             }
 
+            // These WME_* events are also handled, at different times, by a
+            // similar bit of code in ui.cc. Roughly, this handling is used
+            // during the main game display, and the ui.cc loop is used in the
+            // main menu and when there are ui elements on top.
+            // TODO: consolidate as much as possible
+
             switch (event.type)
             {
             case WME_ACTIVEEVENT:
@@ -775,7 +781,6 @@ int TilesFramework::getch_ck()
                 return ESCAPE;
 
             case WME_RESIZE:
-                // TODO: why is this event handled both here and in ui.cc?
                 resize_event(event.resize.w, event.resize.h);
                 set_need_redraw();
                 return CK_REDRAW;
